@@ -1,0 +1,78 @@
+//  Write some awesome Swift code, or import libraries like "Foundation",
+//  "Dispatch", or "Glibc"
+import Foundation
+import CoreFoundation
+
+func createTWId() ->String{
+	let time = UInt32(NSDate().timeIntervalSinceReferenceDate)
+	srand(time)
+	let genderN = Int(rand()%2)
+	var gender:Bool = false
+	switch genderN{
+		case 0:
+		gender=true
+		default:
+		gender=false
+	}
+	
+	return createTWId(gender:gender)
+}
+func createTWId(gender:Bool) ->String{
+	let time = UInt32(NSDate().timeIntervalSinceReferenceDate)
+	srand(time)
+	let area = Int(rand()%26) + 10
+	
+	return createTWId(gender:gender,area:area)
+}
+func createTWId(area:Int) ->String{
+	let time = UInt32(NSDate().timeIntervalSinceReferenceDate)
+	srand(time)
+	let genderN = Int(rand()%2)
+	var gender:Bool = false
+	switch genderN{
+		case 0:
+		gender=true
+		default:
+		gender=false
+	}
+	
+	return createTWId(gender:gender,area:area)
+}
+func createTWId(gender:Bool,area:Int) ->String{
+	let time = UInt32(NSDate().timeIntervalSinceReferenceDate)
+	srand(time)
+	var ID:[Int] = Array(repeating:0,count:11)
+	var Mx:[Int] = [1,9,8,7,6,5,4,3,2,1]
+	let areaToE = "ABCDEFGHJKLMNPQRSTUVXYWZIO"
+	ID[0] = area/10
+	ID[1] = area%10
+	ID[2] = gender ? 1 : 2
+	
+	var sum:Int = 0
+	
+	for i in 0..<ID.count - 1{
+		if i>2{
+			ID[i] = Int(rand()%10)
+		}
+		sum += ID[i]*Mx[i]
+	}
+	
+	ID[10] = (10-sum%10)%10
+	
+	var TWid:String = String()
+	let Findex = areaToE.index(areaToE.startIndex, offsetBy:area-10)
+	let First = areaToE[Findex]
+// 	print(First)
+	
+	TWid.append(First)
+	for i in 2..<ID.count{
+		let temp:String = String(ID[i])
+		TWid.append(temp)
+	}
+	
+	return TWid
+}
+
+var ID = createTWId()
+
+print(ID)
