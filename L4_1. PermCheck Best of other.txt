@@ -1,0 +1,24 @@
+import Foundation
+import Glibc
+
+// you can write to stdout for debugging purposes, e.g.
+// print("this is a debug message")
+
+public func solution(_ A : inout [Int]) -> Int {
+    // write your code in Swift 3.0 (Linux)
+    var s=Set<Int>()
+    for cur in A{
+        if cur > A.count{
+            return 0
+        }else{
+            s.insert(cur)
+        }
+    }
+    
+    if s.count == A.count{
+        return 1
+    }else{
+        return 0
+    }
+    
+}
