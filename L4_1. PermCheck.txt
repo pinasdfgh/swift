@@ -1,0 +1,32 @@
+import Foundation
+import Glibc
+
+// you can write to stdout for debugging purposes, e.g.
+// print("this is a debug message")
+
+public func solution(_ A : inout [Int]) -> Int {
+    // write your code in Swift 3.0 (Linux)
+    let Alen = A.count
+    var check:[Bool] = Array(repeating:false,count:Alen + 1)
+    var rs = true
+    check[0] = true
+    
+    for cur in A{
+        if cur > Alen {
+            rs = false
+           
+            break
+        }else{
+            if check[cur] {
+                rs = false
+                 
+                break
+            }else{
+                check[cur] = true
+                
+            }
+        }
+    }
+    
+    return rs ? 1 : 0
+}
