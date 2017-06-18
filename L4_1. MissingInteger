@@ -1,0 +1,40 @@
+import Foundation
+import Glibc
+
+// you can write to stdout for debugging purposes, e.g.
+// print("this is a debug message")
+
+public func solution(_ A : inout [Int]) -> Int {
+    // write your code in Swift 3.0 (Linux)
+    
+    var s = Set<Int>()
+    
+    for cur in A{
+        if cur > 0 {
+            s.insert(cur)
+        }
+    }
+    
+    if s.count == 0{
+        return 1
+    }
+   
+    
+    let h = s.sorted()
+    
+     if h[0] != 1{
+            return 1
+        }
+    
+    for i in 1..<h.count{
+      
+        if h[i] != h[i - 1] + 1 {
+            return h[i - 1] + 1
+        }
+    }
+    
+    // print(h)
+    // print(Mirror(reflecting: h))	
+    // print(Mirror(reflecting: s))	
+    return h.count + 1
+}

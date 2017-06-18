@@ -1,0 +1,18 @@
+import Foundation
+import Glibc
+
+// you can write to stdout for debugging purposes, e.g.
+// print("this is a debug message")
+
+public func solution(_ A : Int, _ B : Int, _ K : Int) -> Int {
+    // write your code in Swift 3.0 (Linux)
+    if B/K == 0{
+        return A==0 ? 1 : 0
+    }else{
+        let MuA = A%K == 0 ? A/K : A/K+1
+        let MuB =  B/K 
+        let newA = MuA*K
+        let newB = MuB*K
+        return (newB - newA)/K + 1
+    }
+}
